@@ -13,5 +13,5 @@ export function addChain(chain: AddChainParams) {
 }
 
 export function signAmino(chainName: string, doc: SignAminoDoc) {
-  return window.cosmostation.tendermint.request({ method: 'ten_addChain', params: { chainName, doc } }) as Promise<SignAminoResponse>;
+  return window.cosmostation.tendermint.request({ method: 'ten_signAmino', params: { chainName, doc } }) as Promise<SignAminoResponse>;
 }
