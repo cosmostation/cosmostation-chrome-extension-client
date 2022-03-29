@@ -1,6 +1,6 @@
 {
   "name": "cosmostation-chrome-extension-client",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "chrome extension cosmostation client",
   "scripts": {
     "tsc": "tsc",
@@ -11,12 +11,8 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "postbuild": "copy package.json dist",
-    "prepublish:latest": "cd dist",
-    "publish:latest": "yarn publish",
-    "postpublish:latest": "cd ..",
-    "prepublish:alpha": "cd dist",
-    "publish:alpha": "yarn publish --tag alpha",
-    "postpublish:alpha": "cd .."
+    "publish:latest": "cd dist && yarn publish",
+    "publish:alpha": "cd dist && yarn publish --tag alpha"
   },
   "main": "index.js",
   "types": "index.d.ts",
