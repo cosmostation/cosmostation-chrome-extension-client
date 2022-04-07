@@ -3,12 +3,12 @@ export type SupportedChainNamesResponse = {
   unofficial: string[];
 };
 
-export type RequestAccountsResponse = {
+export type RequestAccountResponse = {
   address: string;
   publicKey: Uint8Array;
 };
 
-export type AccountResponse = RequestAccountsResponse;
+export type AccountResponse = RequestAccountResponse;
 
 export type GasRate = {
   tiny: string;

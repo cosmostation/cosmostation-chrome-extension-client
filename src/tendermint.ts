@@ -1,4 +1,4 @@
-import type { AccountResponse, AddChainParams, RequestAccountsResponse, SignAminoDoc, SignAminoResponse, SupportedChainNamesResponse } from './types/message';
+import type { AccountResponse, AddChainParams, RequestAccountResponse, SignAminoDoc, SignAminoResponse, SupportedChainNamesResponse } from './types/message';
 
 export function getSupportedChains() {
   return window.cosmostation.tendermint.request({ method: 'ten_supportedChainNames' }) as Promise<SupportedChainNamesResponse>;
@@ -9,7 +9,7 @@ export function getAccount(chainName: string) {
 }
 
 export function requestAccount(chainName: string) {
-  return window.cosmostation.tendermint.request({ method: 'ten_requestAccount', params: { chainName } }) as Promise<RequestAccountsResponse>;
+  return window.cosmostation.tendermint.request({ method: 'ten_requestAccount', params: { chainName } }) as Promise<RequestAccountResponse>;
 }
 
 export function addChain(chain: AddChainParams) {

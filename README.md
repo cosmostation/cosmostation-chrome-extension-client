@@ -60,7 +60,39 @@ type SupportedChainNamesResponse = {
 };
 ```
 
-#### requestAccount
+#### getAccount
+
+```typescript
+import { tendermint, InstallError } from '@cosmostation/extension-client';
+
+try {
+  const provider = await tendermint();
+
+  const account = await provider.getAccount({ chainName: 'cosmos' });
+} catch (e) {
+  if (e instanceof InstallError) {
+    console.log('not installed');
+  }
+}
+```
+
+##### response (example)
+
+```json
+{
+  "address": "cosmos1wgeoiheoighwoighwioeghoweghoiweghiow",
+  "publicKey": [3, 77, 9, 189, 251, 249, 150, 235, 192, 56, 51, 98, 56, 242, 12, 102, 144, 211, 89, 42, 187, 170]
+}
+```
+
+```typescript
+type AccountResponse = {
+  address: string;
+  publicKey: Uint8Array;
+};
+```
+
+#### requestAccount (Popup)
 
 ```typescript
 import { tendermint, InstallError } from '@cosmostation/extension-client';
@@ -90,7 +122,7 @@ try {
 ```
 
 ```typescript
-type RequestAccountsResponse = {
+type RequestAccountResponse = {
   address: string;
   publicKey: Uint8Array;
 };
