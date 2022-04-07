@@ -6,8 +6,8 @@ interface Window {
     };
     tendermint: {
       request: (message: unknown) => Promise<T>;
-      on: (eventName: unknown, eventHandler: (event?: unknown) => void) => void;
-      off: (handler: (event: MessageEvent<unknown>) => void) => void;
+      on: (eventName: unknown, eventHandler: (event?: unknown) => void) => unknown;
+      off: (handler: unknown) => void;
     };
   };
 }

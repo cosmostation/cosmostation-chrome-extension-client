@@ -8,7 +8,7 @@ export type RequestAccountsResponse = {
   publicKey: Uint8Array;
 };
 
-type GasRate = {
+export type GasRate = {
   tiny: string;
   low: string;
   average: string;
@@ -29,17 +29,17 @@ export type AddChainParams = {
   sendGas?: string;
 };
 
-type Amount = {
+export type Amount = {
   denom: string;
   amount: string;
 };
 
-type Msg<T = unknown> = {
+export type Msg<T = unknown> = {
   type: string;
   value: T;
 };
 
-type Fee = { amount: Amount[]; gas: string };
+export type Fee = { amount: Amount[]; gas: string };
 
 export type SignAminoDoc = {
   chain_id: string;
