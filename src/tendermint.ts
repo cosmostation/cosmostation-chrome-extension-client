@@ -5,7 +5,7 @@ export function getSupportedChains() {
 }
 
 export function requestAccount(chainName: string) {
-  return window.cosmostation.tendermint.request({ method: 'ten_requestAccounts', params: { chainName } }) as Promise<RequestAccountsResponse>;
+  return window.cosmostation.tendermint.request({ method: 'ten_requestAccount', params: { chainName } }) as Promise<RequestAccountsResponse>;
 }
 
 export function addChain(chain: AddChainParams) {
