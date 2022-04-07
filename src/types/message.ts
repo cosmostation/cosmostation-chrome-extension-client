@@ -8,6 +8,8 @@ export type RequestAccountsResponse = {
   publicKey: Uint8Array;
 };
 
+export type AccountResponse = RequestAccountsResponse;
+
 export type GasRate = {
   tiny: string;
   low: string;
