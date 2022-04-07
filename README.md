@@ -36,7 +36,7 @@ import { tendermint, InstallError } from '@cosmostation/extension-client';
 try {
   const provider = await tendermint();
 
-  const supportedChains = await provider.getSuppotedChains();
+  const supportedChains = await provider.getSupportedChains();
 } catch (e) {
   if (e instanceof InstallError) {
     console.log('not installed');
@@ -102,7 +102,7 @@ type RequestAccountsResponse = {
 import { tendermint, InstallError } from '@cosmostation/extension-client';
 try {
   const provider = await tendermint();
-  const supportedChains = await provider.supportedChains();
+  const supportedChains = await provider.getSupportedChains();
 
   if (![...supportedChains.official, ...supportedChains.unofficial].includes('cerberus')) {
     await provider.addChain({
