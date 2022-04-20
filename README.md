@@ -87,6 +87,7 @@ try {
 
 ```typescript
 type AccountResponse = {
+  name: string;
   address: string;
   publicKey: Uint8Array;
 };
@@ -123,6 +124,7 @@ try {
 
 ```typescript
 type RequestAccountResponse = {
+  name: string;
   address: string;
   publicKey: Uint8Array;
 };
