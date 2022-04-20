@@ -6,6 +6,7 @@ export type SupportedChainNamesResponse = {
 export type RequestAccountResponse = {
   address: string;
   publicKey: Uint8Array;
+  name: string;
 };
 
 export type AccountResponse = RequestAccountResponse;

@@ -28,7 +28,7 @@ try {
 }
 ```
 
-#### getSuppotedChains
+#### getSupportedChains
 
 ```typescript
 import { tendermint, InstallError } from '@cosmostation/extension-client';
