@@ -1,5 +1,5 @@
 import { InstallError } from './error';
-import { addChain, getAccount, getSupportedChains, offAccountChanged, onAccountChanged, requestAccount, signAmino } from './tendermint';
+import { addChain, getAccount, getSupportedChains, offAccountChanged, onAccountChanged, requestAccount, signAmino, signDirect } from './tendermint';
 
 export { InstallError };
 
@@ -8,6 +8,7 @@ export type Tendermint = {
   getAccount: typeof getAccount;
   requestAccount: typeof requestAccount;
   signAmino: typeof signAmino;
+  signDirect: typeof signDirect;
   getSupportedChains: typeof getSupportedChains;
   onAccountChanged: typeof onAccountChanged;
   offAccountChanged: typeof offAccountChanged;
@@ -22,7 +23,7 @@ export function tendermint(): Promise<Tendermint> {
     const interval = setInterval(() => {
       if (isInstalled()) {
         clearInterval(interval);
-        resolve({ addChain, requestAccount, signAmino, getSupportedChains, onAccountChanged, offAccountChanged, getAccount });
+        resolve({ addChain, requestAccount, signAmino, signDirect, getSupportedChains, onAccountChanged, offAccountChanged, getAccount });
       }
     }, 100);
 

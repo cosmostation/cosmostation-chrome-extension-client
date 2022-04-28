@@ -80,6 +80,7 @@ try {
 
 ```json
 {
+  "name": "accountName",
   "address": "cosmos1wgeoiheoighwoighwioeghoweghoiweghiow",
   "publicKey": [3, 77, 9, 189, 251, 249, 150, 235, 192, 56, 51, 98, 56, 242, 12, 102, 144, 211, 89, 42, 187, 170]
 }
@@ -117,6 +118,7 @@ try {
 
 ```json
 {
+  "name": "accountName",
   "address": "cosmos1wgeoiheoighwoighwioeghoweghoiweghiow",
   "publicKey": [3, 77, 9, 189, 251, 249, 150, 235, 192, 56, 51, 98, 56, 242, 12, 102, 144, 211, 89, 42, 187, 170]
 }
@@ -187,23 +189,21 @@ try {
   const response = await provider.signAmino(
     'cosmos',
     {
-      doc: {
-        chain_id: 'cosmoshub-4',
-        fee: { amount: [{ denom: 'uatom', amount: '5000' }], gas: '200000' },
-        memo: '',
-        msgs: [
-          {
-            type: 'cosmos-sdk/MsgSend',
-            value: {
-              from_address: 'cosmos1wepghweioghweiog',
-              to_address: 'cosmos1weogihweoighweoigheoiw',
-              amount: [{ denom: 'uatom', amount: '5000' }],
-            },
+      chain_id: 'cosmoshub-4',
+      fee: { amount: [{ denom: 'uatom', amount: '5000' }], gas: '200000' },
+      memo: '',
+      msgs: [
+        {
+          type: 'cosmos-sdk/MsgSend',
+          value: {
+            from_address: 'cosmos1wepghweioghweiog',
+            to_address: 'cosmos1weogihweoighweoigheoiw',
+            amount: [{ denom: 'uatom', amount: '5000' }],
           },
-        ],
-        sequence: '20',
-        account_number: '632177',
-      },
+        },
+      ],
+      sequence: '20',
+      account_number: '632177',
     },
     { memo: true, fee: true }, // edit | optional (default: { memo: false, fee: false }),
   );
@@ -271,6 +271,83 @@ export type Msg<T = unknown> = {
 };
 
 export type Fee = { amount: Amount[]; gas: string };
+```
+
+#### signDirect
+
+```typescript
+import { tendermint, InstallError } from '@cosmostation/extension-client';
+try {
+  const provider = await tendermint();
+  const response = await provider.signDirect(
+    'cosmos',
+    {
+      chain_id: 'cosmoshub-4',
+      account_number: '1',
+      auth_info_bytes: [
+        10, 80, 10, 70, 10, 31, 47, 99, 111, 115, 109, 111, 115, 46, 99, 114, 121, 112, 116, 111, 46, 115, 101, 99, 112, 50, 53, 54, 107, 49, 46, 80, 117, 98,
+        75, 101, 121, 18, 35, 10, 33, 3, 77, 9, 189, 251, 249, 150, 235, 192, 56, 51, 98, 56, 242, 12, 102, 144, 211, 89, 42, 187, 170, 250, 5, 87, 201, 59,
+        166, 215, 108, 14, 162, 212, 18, 4, 10, 2, 8, 127, 24, 14, 18, 19, 10, 13, 10, 5, 117, 97, 116, 111, 109, 18, 4, 50, 48, 48, 48, 16, 128, 241, 4,
+      ],
+      body_bytes: [
+        10, 133, 1, 10, 28, 47, 99, 111, 115, 109, 111, 115, 46, 98, 97, 110, 107, 46, 118, 49, 98, 101, 116, 97, 49, 46, 77, 115, 103, 83, 101, 110, 100, 18,
+        101, 10, 42, 99, 114, 101, 49, 103, 114, 48, 101, 51, 112, 106, 51, 121, 54, 102, 113, 118, 122, 121, 102, 109, 48, 113, 120, 121, 119, 57, 104, 53,
+        100, 119, 102, 114, 118, 104, 56, 120, 121, 122, 114, 115, 118, 18, 42, 99, 114, 101, 49, 120, 53, 119, 103, 104, 54, 118, 119, 121, 101, 54, 48, 119,
+        118, 51, 100, 116, 115, 104, 115, 57, 100, 109, 113, 103, 103, 119, 102, 120, 50, 108, 100, 104, 103, 108, 117, 101, 122, 26, 11, 10, 4, 117, 99, 114,
+        101, 18, 3, 49, 48, 48, 18, 0,
+      ],
+    },
+    { memo: true, fee: true }, // edit | optional (default: { memo: false, fee: false }),
+  );
+} catch (e) {
+  if (e instanceof InstallError) {
+    console.log('not installed');
+  }
+
+  if (e.code === 4001) {
+    console.log('user rejected request');
+  }
+}
+```
+
+##### response (example)
+
+```json
+{
+  "pub_key": { "type": "tendermint/PubKeySecp256k1", "value": "A00Jvfv5luvAODNiOPIMZpDTWSq7qvoFV8k7ptdsDqLU" },
+  "signature": "signature==",
+  "signed_doc": {
+    "chain_id": "cosmoshub-4",
+    "account_number": "1",
+    "auth_info_bytes": [
+      10, 80, 10, 70, 10, 31, 47, 99, 111, 115, 109, 111, 115, 46, 99, 114, 121, 112, 116, 111, 46, 115, 101, 99, 112, 50, 53, 54, 107, 49, 46, 80, 117, 98, 75,
+      101, 121, 18, 35, 10, 33, 3, 77, 9, 189, 251, 249, 150, 235, 192, 56, 51, 98, 56, 242, 12, 102, 144, 211, 89, 42, 187, 170, 250, 5, 87, 201, 59, 166, 215,
+      108, 14, 162, 212, 18, 4, 10, 2, 8, 127, 24, 14, 18, 19, 10, 13, 10, 5, 117, 97, 116, 111, 109, 18, 4, 50, 48, 48, 48, 16, 128, 241, 4
+    ],
+    "body_bytes": [
+      10, 133, 1, 10, 28, 47, 99, 111, 115, 109, 111, 115, 46, 98, 97, 110, 107, 46, 118, 49, 98, 101, 116, 97, 49, 46, 77, 115, 103, 83, 101, 110, 100, 18,
+      101, 10, 42, 99, 114, 101, 49, 103, 114, 48, 101, 51, 112, 106, 51, 121, 54, 102, 113, 118, 122, 121, 102, 109, 48, 113, 120, 121, 119, 57, 104, 53, 100,
+      119, 102, 114, 118, 104, 56, 120, 121, 122, 114, 115, 118, 18, 42, 99, 114, 101, 49, 120, 53, 119, 103, 104, 54, 118, 119, 121, 101, 54, 48, 119, 118, 51,
+      100, 116, 115, 104, 115, 57, 100, 109, 113, 103, 103, 119, 102, 120, 50, 108, 100, 104, 103, 108, 117, 101, 122, 26, 11, 10, 4, 117, 99, 114, 101, 18, 3,
+      49, 48, 48, 18, 0
+    ]
+  }
+}
+```
+
+```typescript
+export type SignDirectResponse = {
+  signature: string;
+  pub_key: { type: string; value: string };
+  signed_doc: SignDirectDoc;
+};
+
+export type SignDirectDoc = {
+  chain_id: string;
+  body_bytes: Uint8Array;
+  auth_info_bytes: Uint8Array;
+  account_number: string;
+};
 ```
 
 #### onAccountChanged
