@@ -1,4 +1,13 @@
-import type { AccountResponse, AddChainParams, RequestAccountResponse, SignAminoDoc, SignAminoResponse, SupportedChainNamesResponse } from './types/message';
+import type {
+  AccountResponse,
+  AddChainParams,
+  RequestAccountResponse,
+  SignAminoDoc,
+  SignAminoResponse,
+  SignDirectDoc,
+  SignDirectResponse,
+  SupportedChainNamesResponse,
+} from './types/message';
 
 export function getSupportedChains() {
   return window.cosmostation.tendermint.request({ method: 'ten_supportedChainNames' }) as Promise<SupportedChainNamesResponse>;
@@ -16,11 +25,18 @@ export function addChain(chain: AddChainParams) {
   return window.cosmostation.tendermint.request({ method: 'ten_addChain', params: { ...chain } }) as Promise<boolean>;
 }
 
-export function signAmino(chainName: string, doc: SignAminoDoc, edit?: { memo?: boolean; fee?: boolean }) {
+export function signAmino(chainName: string, doc: SignAminoDoc, options?: { memo?: boolean; fee?: boolean }) {
   return window.cosmostation.tendermint.request({
     method: 'ten_signAmino',
-    params: { chainName, doc, isEditMemo: !!edit?.memo, isEditFee: !!edit?.fee },
+    params: { chainName, doc, isEditMemo: !!options?.memo, isEditFee: !!options?.fee },
   }) as Promise<SignAminoResponse>;
+}
+
+export function signDirect(chainName: string, doc: SignDirectDoc, options?: { memo?: boolean; fee?: boolean }) {
+  return window.cosmostation.tendermint.request({
+    method: 'ten_signDirect',
+    params: { chainName, doc, isEditMemo: !!options?.memo, isEditFee: !!options?.fee },
+  }) as Promise<SignDirectResponse>;
 }
 
 export function onAccountChanged(handler: () => void) {

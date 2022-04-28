@@ -58,3 +58,16 @@ export type SignAminoResponse = {
   pub_key: { type: string; value: string };
   signed_doc: SignAminoDoc;
 };
+
+export type SignDirectDoc = {
+  chain_id: string;
+  body_bytes: Uint8Array;
+  auth_info_bytes: Uint8Array;
+  account_number: string;
+};
+
+export type SignDirectResponse = {
+  signature: string;
+  pub_key: { type: string; value: string };
+  signed_doc: SignDirectDoc;
+};
