@@ -71,3 +71,13 @@ export type SignDirectResponse = {
   pub_key: { type: string; value: string };
   signed_doc: SignDirectDoc;
 };
+
+export type SignOptions = {
+  memo?: boolean;
+  fee?: boolean;
+  gasRate?: {
+    tiny: string;
+    low: string;
+    average: string;
+  };
+};

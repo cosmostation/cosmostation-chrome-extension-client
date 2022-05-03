@@ -205,7 +205,16 @@ try {
       sequence: '20',
       account_number: '632177',
     },
-    { memo: true, fee: true }, // edit | optional (default: { memo: false, fee: false }),
+    {
+      memo: true, // editable (memo) / optional
+      fee: true, // editable (fee) / optional
+      gasRate: {
+        // optional
+        average: '0.2',
+        low: '0.02',
+        tiny: '0.002',
+      },
+    },
   );
 } catch (e) {
   if (e instanceof InstallError) {
@@ -297,7 +306,16 @@ try {
         101, 18, 3, 49, 48, 48, 18, 0,
       ],
     },
-    { memo: true, fee: true }, // edit | optional (default: { memo: false, fee: false }),
+    {
+      memo: true, // editable (memo) / optional
+      fee: true, // editable (fee) / optional
+      gasRate: {
+        // optional
+        average: '0.2',
+        low: '0.02',
+        tiny: '0.002',
+      },
+    },
   );
 } catch (e) {
   if (e instanceof InstallError) {

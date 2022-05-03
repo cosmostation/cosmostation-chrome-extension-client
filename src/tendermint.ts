@@ -6,6 +6,7 @@ import type {
   SignAminoResponse,
   SignDirectDoc,
   SignDirectResponse,
+  SignOptions,
   SupportedChainNamesResponse,
 } from './types/message';
 
@@ -25,17 +26,17 @@ export function addChain(chain: AddChainParams) {
   return window.cosmostation.tendermint.request({ method: 'ten_addChain', params: { ...chain } }) as Promise<boolean>;
 }
 
-export function signAmino(chainName: string, doc: SignAminoDoc, options?: { memo?: boolean; fee?: boolean }) {
+export function signAmino(chainName: string, doc: SignAminoDoc, options?: SignOptions) {
   return window.cosmostation.tendermint.request({
     method: 'ten_signAmino',
-    params: { chainName, doc, isEditMemo: !!options?.memo, isEditFee: !!options?.fee },
+    params: { chainName, doc, isEditMemo: !!options?.memo, isEditFee: !!options?.fee, gasRate: options?.gasRate },
   }) as Promise<SignAminoResponse>;
 }
 
-export function signDirect(chainName: string, doc: SignDirectDoc, options?: { memo?: boolean; fee?: boolean }) {
+export function signDirect(chainName: string, doc: SignDirectDoc, options?: SignOptions) {
   return window.cosmostation.tendermint.request({
     method: 'ten_signDirect',
-    params: { chainName, doc, isEditMemo: !!options?.memo, isEditFee: !!options?.fee },
+    params: { chainName, doc, isEditMemo: !!options?.memo, isEditFee: !!options?.fee, gasRate: options?.gasRate },
   }) as Promise<SignDirectResponse>;
 }
 
