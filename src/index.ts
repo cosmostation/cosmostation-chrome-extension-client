@@ -33,3 +33,24 @@ export function tendermint(): Promise<Tendermint> {
     }, 500);
   });
 }
+
+export function ethereum(): Promise<{
+  request: (message: { method: string; params?: unknown }) => Promise<unknown>;
+  on: (eventName: string, eventHandler: (event?: unknown) => void) => unknown;
+  off: (handler: unknown) => void;
+  sendAsync: () => null;
+}> {
+  return new Promise((resolve, reject) => {
+    const interval = setInterval(() => {
+      if (isInstalled()) {
+        clearInterval(interval);
+        resolve(window.cosmostation.ethereum);
+      }
+    }, 100);
+
+    setTimeout(() => {
+      clearInterval(interval);
+      reject(new InstallError());
+    }, 500);
+  });
+}

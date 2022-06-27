@@ -12,7 +12,79 @@ yarn add @cosmostation/extension-client
 npm install @cosmostation/extension-client
 ```
 
-### Tendermint
+---
+
+### \* Ethereum
+
+```typescript
+import { ethereum, InstallError } from '@cosmostation/extension-client';
+
+try {
+  const provider = await ethereum();
+} catch (e) {
+  if (e instanceof InstallError) {
+    console.log('not installed');
+  }
+}
+```
+
+#### Use web3.js
+
+- [npmjs](https://www.npmjs.com/package/web3)
+- [docs](https://web3js.readthedocs.io)
+
+```typescript
+import Web3 from 'web3';
+import { ethereum, InstallError } from '@cosmostation/extension-client';
+
+try {
+  const provider = await ethereum();
+
+  const web3 = new Web3(provider);
+
+  // requestAccounts
+  const accounts = web3.eth.requestAccounts();
+
+  // If you want more info, please check out web3.js docs (https://web3js.readthedocs.io)
+} catch (e) {
+  if (e instanceof InstallError) {
+    console.log('not installed');
+  }
+
+  // exception
+}
+```
+
+#### Use ethers.js
+
+- [npmjs](https://www.npmjs.com/package/ethers)
+- [docs](https://docs.ethers.io)
+
+```typescript
+import { ethers } from 'ethers';
+import { ethereum, InstallError } from '@cosmostation/extension-client';
+
+try {
+  const provider = await ethereum();
+
+  const ethersProvider = new ethers.providers.Web3Provider(provider);
+
+  // requestAccounts
+  const accounts = ethersProvider.send('eth_requestAccounts', []);
+
+  // If you want more info, please check out ethers docs (https://docs.ethers.io)
+} catch (e) {
+  if (e instanceof InstallError) {
+    console.log('not installed');
+  }
+
+  // exception
+}
+```
+
+---
+
+### \* Tendermint
 
 #### provider
 
