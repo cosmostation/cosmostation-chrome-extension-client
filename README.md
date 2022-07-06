@@ -84,15 +84,15 @@ try {
 
 ---
 
-### \* Tendermint
+### \* Cosmos chains
 
 #### provider
 
 ```typescript
-import { tendermint, InstallError } from '@cosmostation/extension-client';
+import { cosmos, InstallError } from '@cosmostation/extension-client';
 
 try {
-  const provider = await tendermint();
+  const provider = await cosmos();
 } catch (e) {
   if (e instanceof InstallError) {
     console.log('not installed');
@@ -103,10 +103,10 @@ try {
 #### getSupportedChains
 
 ```typescript
-import { tendermint, InstallError } from '@cosmostation/extension-client';
+import { cosmos, InstallError } from '@cosmostation/extension-client';
 
 try {
-  const provider = await tendermint();
+  const provider = await cosmos();
 
   const supportedChains = await provider.getSupportedChains();
 } catch (e) {
@@ -135,10 +135,10 @@ type SupportedChainNamesResponse = {
 #### getAccount
 
 ```typescript
-import { tendermint, InstallError } from '@cosmostation/extension-client';
+import { cosmos, InstallError } from '@cosmostation/extension-client';
 
 try {
-  const provider = await tendermint();
+  const provider = await cosmos();
 
   const account = await provider.getAccount({ chainName: 'cosmos' });
 } catch (e) {
@@ -169,10 +169,10 @@ type AccountResponse = {
 #### requestAccount (Popup)
 
 ```typescript
-import { tendermint, InstallError } from '@cosmostation/extension-client';
+import { cosmos, InstallError } from '@cosmostation/extension-client';
 
 try {
-  const provider = await tendermint();
+  const provider = await cosmos();
 
   const account = await provider.requestAccount({ chainName: 'cosmos' });
 } catch (e) {
@@ -207,9 +207,9 @@ type RequestAccountResponse = {
 #### addChain
 
 ```typescript
-import { tendermint, InstallError } from '@cosmostation/extension-client';
+import { cosmos, InstallError } from '@cosmostation/extension-client';
 try {
-  const provider = await tendermint();
+  const provider = await cosmos();
   const supportedChains = await provider.getSupportedChains();
 
   if (![...supportedChains.official, ...supportedChains.unofficial].includes('cerberus')) {
@@ -255,9 +255,9 @@ type addChainResponse = boolean;
 #### signAmino
 
 ```typescript
-import { tendermint, InstallError } from '@cosmostation/extension-client';
+import { cosmos, InstallError } from '@cosmostation/extension-client';
 try {
-  const provider = await tendermint();
+  const provider = await cosmos();
   const response = await provider.signAmino(
     'cosmos',
     {
@@ -357,9 +357,9 @@ export type Fee = { amount: Amount[]; gas: string };
 #### signDirect
 
 ```typescript
-import { tendermint, InstallError } from '@cosmostation/extension-client';
+import { cosmos, InstallError } from '@cosmostation/extension-client';
 try {
-  const provider = await tendermint();
+  const provider = await cosmos();
   const response = await provider.signDirect(
     'cosmos',
     {
@@ -443,9 +443,9 @@ export type SignDirectDoc = {
 #### onAccountChanged
 
 ```typescript
-import { tendermint, InstallError } from '@cosmostation/extension-client';
+import { cosmos, InstallError } from '@cosmostation/extension-client';
 try {
-  const provider = await tendermint();
+  const provider = await cosmos();
 
   provider.onAccountChanged(() => console.log('changed'));
 } catch (e) {
@@ -462,9 +462,9 @@ try {
 #### offAccountChanged
 
 ```typescript
-import { tendermint, InstallError } from '@cosmostation/extension-client';
+import { cosmos, InstallError } from '@cosmostation/extension-client';
 try {
-  const provider = await tendermint();
+  const provider = await cosmos();
 
   const event = provider.onAccountChanged(() => console.log('changed'));
   provider.offAccountChanged(event);
