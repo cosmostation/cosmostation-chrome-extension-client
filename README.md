@@ -140,7 +140,7 @@ import { cosmos, InstallError } from '@cosmostation/extension-client';
 try {
   const provider = await cosmos();
 
-  const account = await provider.getAccount({ chainName: 'cosmos' });
+  const account = await provider.getAccount('cosmos');
 } catch (e) {
   if (e instanceof InstallError) {
     console.log('not installed');
@@ -174,7 +174,7 @@ import { cosmos, InstallError } from '@cosmostation/extension-client';
 try {
   const provider = await cosmos();
 
-  const account = await provider.requestAccount({ chainName: 'cosmos' });
+  const account = await provider.requestAccount('cosmos');
 } catch (e) {
   if (e instanceof InstallError) {
     console.log('not installed');
