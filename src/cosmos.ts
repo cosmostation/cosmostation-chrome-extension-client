@@ -2,6 +2,7 @@ import type {
   AccountResponse,
   AddChainParams,
   RequestAccountResponse,
+  SendTransactionResponse,
   SignAminoDoc,
   SignAminoResponse,
   SignDirectDoc,
@@ -38,6 +39,22 @@ export function signDirect(chainName: string, doc: SignDirectDoc, options?: Sign
     method: 'cos_signDirect',
     params: { chainName, doc, isEditMemo: !!options?.memo, isEditFee: !!options?.fee, gasRate: options?.gasRate },
   }) as Promise<SignDirectResponse>;
+}
+
+export const SEND_TRANSACTION_MODE = {
+  UNSPECIFIED: 0,
+  BLOCK: 1,
+  SYNC: 2,
+  ASYNC: 3,
+} as const;
+
+type SendTransactionMode = ValueOf<typeof SEND_TRANSACTION_MODE>;
+
+export function sendTransaction(chainName: string, txBytes: Uint8Array | string, mode: SendTransactionMode) {
+  return window.cosmostation.cosmos.request({
+    method: 'cos_sendTransaction',
+    params: { chainName, txBytes, mode },
+  }) as Promise<SendTransactionResponse>;
 }
 
 export function onAccountChanged(handler: () => void) {

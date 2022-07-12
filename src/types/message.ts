@@ -81,3 +81,23 @@ export type SignOptions = {
     average: string;
   };
 };
+
+export type SendTransaction = {
+  code: number;
+  txhash: string;
+  raw_log?: unknown;
+  codespace?: unknown;
+  tx?: unknown;
+  log?: unknown;
+  info?: unknown;
+  height?: unknown;
+  gas_wanted?: unknown;
+  gas_used?: unknown;
+  events?: unknown;
+  data?: unknown;
+  timestamp?: unknown;
+};
+
+export type SendTransactionResponse = {
+  tx_response: SendTransaction;
+};

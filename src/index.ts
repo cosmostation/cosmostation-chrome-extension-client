@@ -8,7 +8,9 @@ export function isInstalled() {
   return !!window.cosmostation;
 }
 
-export function cosmos(): Promise<typeof cosmosFunctions> {
+export type Cosmos = typeof cosmosFunctions;
+
+export function cosmos(): Promise<Cosmos> {
   return new Promise((resolve, reject) => {
     const interval = setInterval(() => {
       if (isInstalled()) {
@@ -24,8 +26,10 @@ export function cosmos(): Promise<typeof cosmosFunctions> {
   });
 }
 
+export type Tendermint = typeof tendermintFunctions;
+
 // legacy
-export function tendermint(): Promise<typeof tendermintFunctions> {
+export function tendermint(): Promise<Tendermint> {
   return new Promise((resolve, reject) => {
     const interval = setInterval(() => {
       if (isInstalled()) {
