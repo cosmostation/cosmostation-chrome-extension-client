@@ -26,9 +26,9 @@ export function cosmos(): Promise<Cosmos> {
   });
 }
 
+// legacy
 export type Tendermint = typeof tendermintFunctions;
 
-// legacy
 export function tendermint(): Promise<Tendermint> {
   return new Promise((resolve, reject) => {
     const interval = setInterval(() => {

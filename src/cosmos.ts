@@ -48,7 +48,7 @@ export const SEND_TRANSACTION_MODE = {
   ASYNC: 3,
 } as const;
 
-type SendTransactionMode = ValueOf<typeof SEND_TRANSACTION_MODE>;
+export type SendTransactionMode = typeof SEND_TRANSACTION_MODE[keyof typeof SEND_TRANSACTION_MODE];
 
 export function sendTransaction(chainName: string, txBytes: Uint8Array | string, mode: SendTransactionMode) {
   return window.cosmostation.cosmos.request({
