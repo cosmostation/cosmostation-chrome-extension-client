@@ -451,7 +451,7 @@ try {
   const response = await provider.sendTransaction(
     'cosmos',
     'abc=', // base64 string or Uint8Array
-    SEND_TRANSACTION_MODE.ASYNC /* SEND_TRANSACTION_MODE or one of [1, 2, 3, 4] */,
+    SEND_TRANSACTION_MODE.ASYNC /* SEND_TRANSACTION_MODE or one of [0, 1, 2, 3] */,
   );
 } catch (e) {
   if (e instanceof InstallError) {
