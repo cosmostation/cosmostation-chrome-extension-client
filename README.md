@@ -229,6 +229,7 @@ try {
         tiny: '0.002',
       },
       sendGas: '80000', // optional (default: '100000')
+      type: 'ETHERMINT', // optional (default: '')
     });
   }
 } catch (e) {

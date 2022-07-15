@@ -1,3 +1,8 @@
+import type { COSMOS_TYPE, SEND_TRANSACTION_MODE } from '../cosmos';
+
+export type SendTransactionMode = typeof SEND_TRANSACTION_MODE[keyof typeof SEND_TRANSACTION_MODE];
+export type CosmosType = typeof COSMOS_TYPE[keyof typeof COSMOS_TYPE];
+
 export type SupportedChainNamesResponse = {
   official: string[];
   unofficial: string[];
@@ -30,6 +35,7 @@ export type AddChainParams = {
   coinGeckoId?: string;
   gasRate?: GasRate;
   sendGas?: string;
+  type?: CosmosType;
 };
 
 export type Amount = {
