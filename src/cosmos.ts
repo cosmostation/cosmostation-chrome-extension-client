@@ -1,5 +1,6 @@
 import type {
   AccountResponse,
+  ActivatedChainNamesResponse,
   AddChainParams,
   RequestAccountResponse,
   SendTransactionMode,
@@ -14,6 +15,10 @@ import type {
 
 export function getSupportedChains() {
   return window.cosmostation.cosmos.request({ method: 'cos_supportedChainNames' }) as Promise<SupportedChainNamesResponse>;
+}
+
+export function getActivatedChains() {
+  return window.cosmostation.cosmos.request({ method: 'cos_activatedChainNames' }) as Promise<ActivatedChainNamesResponse>;
 }
 
 export function getAccount(chainName: string) {

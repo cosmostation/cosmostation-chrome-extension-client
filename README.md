@@ -132,6 +132,32 @@ type SupportedChainNamesResponse = {
 };
 ```
 
+#### getActivatedChains
+
+```typescript
+import { cosmos, InstallError } from '@cosmostation/extension-client';
+
+try {
+  const provider = await cosmos();
+
+  const activatedChains = await provider.getActivatedChains();
+} catch (e) {
+  if (e instanceof InstallError) {
+    console.log('not installed');
+  }
+}
+```
+
+##### response (example)
+
+```json
+["cosmos", "osmosis"]
+```
+
+```typescript
+export type ActivatedChainNamesResponse = string[];
+```
+
 #### getAccount
 
 ```typescript

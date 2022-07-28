@@ -8,6 +8,8 @@ export type SupportedChainNamesResponse = {
   unofficial: string[];
 };
 
+export type ActivatedChainNamesResponse = string[];
+
 export type RequestAccountResponse = {
   address: string;
   publicKey: Uint8Array;
