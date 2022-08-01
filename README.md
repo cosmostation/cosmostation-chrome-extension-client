@@ -540,6 +540,106 @@ export const SEND_TRANSACTION_MODE = {
 };
 ```
 
+#### setAutoSign
+
+```typescript
+import { cosmos, InstallError } from '@cosmostation/extension-client';
+
+try {
+  const provider = await cosmos();
+  const response = await provider.autoSign.set(
+    'cosmos',
+    1000, // seconds, 0~3600
+  );
+} catch (e) {
+  if (e instanceof InstallError) {
+    console.log('not installed');
+  }
+
+  if (e.code === 4001) {
+    console.log('user rejected request');
+  }
+
+  // connection or internal error
+}
+```
+
+##### response (example)
+
+```json
+null
+```
+
+```typescript
+export type SetAutoSignResponse = null;
+```
+
+#### getAutoSign
+
+for getting a auto sign's end time
+
+```typescript
+import { cosmos, InstallError } from '@cosmostation/extension-client';
+
+try {
+  const provider = await cosmos();
+  const response = await provider.autoSign.get('cosmos'); // if exists then end time (number) else null
+
+  const endDate = response ? new Date(response) : null;
+} catch (e) {
+  if (e instanceof InstallError) {
+    console.log('not installed');
+  }
+
+  if (e.code === 4001) {
+    console.log('user rejected request');
+  }
+
+  // connection or internal error
+}
+```
+
+##### response (example)
+
+```json
+1659335896648
+```
+
+```typescript
+export type GetAutoSignResponse = number | null;
+```
+
+#### deleteAutoSign
+
+```typescript
+import { cosmos, InstallError } from '@cosmostation/extension-client';
+
+try {
+  const provider = await cosmos();
+  const response = await provider.autoSign.delete('cosmos');
+} catch (e) {
+  if (e instanceof InstallError) {
+    console.log('not installed');
+  }
+
+  if (e.code === 4001) {
+    console.log('user rejected request');
+  }
+
+  // connection or internal error
+}
+```
+
+##### response (example)
+
+```json
+null
+```
+
+```typescript
+export type DeleteAutoSignResponse = null;
+```
+
 #### onAccountChanged
 
 ```typescript

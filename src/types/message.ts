@@ -109,3 +109,7 @@ export type SendTransaction = {
 export type SendTransactionResponse = {
   tx_response: SendTransaction;
 };
+
+export type SetAutoSignResponse = null;
+export type GetAutoSignResponse = number | null;
+export type DeleteAutoSignResponse = null;

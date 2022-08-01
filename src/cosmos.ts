@@ -2,9 +2,12 @@ import type {
   AccountResponse,
   ActivatedChainNamesResponse,
   AddChainParams,
+  DeleteAutoSignResponse,
+  GetAutoSignResponse,
   RequestAccountResponse,
   SendTransactionMode,
   SendTransactionResponse,
+  SetAutoSignResponse,
   SignAminoDoc,
   SignAminoResponse,
   SignDirectDoc,
@@ -53,6 +56,24 @@ export function sendTransaction(chainName: string, txBytes: Uint8Array | string,
     params: { chainName, txBytes, mode },
   }) as Promise<SendTransactionResponse>;
 }
+
+export const autoSign = {
+  set: (chainName: string, duration: number) =>
+    window.cosmostation.cosmos.request({
+      method: 'cos_setAutoSign',
+      params: { chainName, duration },
+    }) as Promise<SetAutoSignResponse>,
+  get: (chainName: string) =>
+    window.cosmostation.cosmos.request({
+      method: 'cos_getAutoSign',
+      params: { chainName },
+    }) as Promise<GetAutoSignResponse>,
+  delete: (chainName: string) =>
+    window.cosmostation.cosmos.request({
+      method: 'cos_deleteAutoSign',
+      params: { chainName },
+    }) as Promise<DeleteAutoSignResponse>,
+};
 
 export function onAccountChanged(handler: () => void) {
   return window.cosmostation.cosmos.on('accountChanged', handler);
