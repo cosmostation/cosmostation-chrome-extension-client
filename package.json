@@ -27,12 +27,11 @@
     "type": "git",
     "url": "https://github.com/cosmostation/cosmostation-chrome-extension-client"
   },
-  "dependencies": {
-    "cpy-cli": "^4.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
+    "cpy-cli": "^4.1.0",
     "eslint": "^8.3.0",
     "eslint-config-airbnb": "^19.0.2",
     "eslint-config-airbnb-base": "^15.0.0",
