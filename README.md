@@ -576,7 +576,7 @@ export type SetAutoSignResponse = null;
 
 #### getAutoSign
 
-for getting a auto sign's end time
+for getting auto sign's end time
 
 ```typescript
 import { cosmos, InstallError } from '@cosmostation/extension-client';
