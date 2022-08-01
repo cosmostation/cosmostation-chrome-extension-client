@@ -576,12 +576,14 @@ export type SetAutoSignResponse = null;
 
 #### getAutoSign
 
+for getting a auto sign's end time
+
 ```typescript
 import { cosmos, InstallError } from '@cosmostation/extension-client';
 
 try {
   const provider = await cosmos();
-  const response = await provider.autoSign.get('cosmos'); // if exists then time (number) else null
+  const response = await provider.autoSign.get('cosmos'); // if exists then end time (number) else null
 
   const endDate = response ? new Date(response) : null;
 } catch (e) {
