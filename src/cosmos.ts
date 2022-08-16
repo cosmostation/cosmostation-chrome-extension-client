@@ -2,8 +2,12 @@ import type {
   AccountResponse,
   ActivatedChainNamesResponse,
   AddChainParams,
+  AddCW20TokenResponse,
+  CW20Token,
   DeleteAutoSignResponse,
   GetAutoSignResponse,
+  getCW20TokenBalanceResponse,
+  getCW20TokenInfoResponse,
   RequestAccountResponse,
   SendTransactionMode,
   SendTransactionResponse,
@@ -74,6 +78,27 @@ export const autoSign = {
       params: { chainName },
     }) as Promise<DeleteAutoSignResponse>,
 };
+
+export function addCW20Tokens(chainName: string, tokens: CW20Token[]) {
+  return window.cosmostation.cosmos.request({
+    method: 'cos_addTokensCW20',
+    params: { chainName, tokens },
+  }) as Promise<AddCW20TokenResponse>;
+}
+
+export function getCW20TokenBalance(chainName: string, contractAddress: string, address: string) {
+  return window.cosmostation.cosmos.request({
+    method: 'cos_getBalanceCW20',
+    params: { chainName, contractAddress, address },
+  }) as Promise<getCW20TokenBalanceResponse>;
+}
+
+export function getCW20TokenInfo(chainName: string, contractAddress: string) {
+  return window.cosmostation.cosmos.request({
+    method: 'cos_getTokenInfoCW20',
+    params: { chainName, contractAddress },
+  }) as Promise<getCW20TokenInfoResponse>;
+}
 
 export function onAccountChanged(handler: () => void) {
   return window.cosmostation.cosmos.on('accountChanged', handler);

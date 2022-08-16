@@ -113,3 +113,18 @@ export type SendTransactionResponse = {
 export type SetAutoSignResponse = null;
 export type GetAutoSignResponse = number | null;
 export type DeleteAutoSignResponse = null;
+
+export type CW20Token = {
+  contractAddress: string;
+  imageURL?: string;
+  coinGeckoId?: string;
+};
+
+export type AddCW20TokenResponse = null;
+export type getCW20TokenBalanceResponse = string;
+export type getCW20TokenInfoResponse = {
+  decimals: number;
+  name: string;
+  symbol: string;
+  total_supply: string;
+};
