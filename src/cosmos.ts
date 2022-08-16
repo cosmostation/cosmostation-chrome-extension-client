@@ -100,6 +100,14 @@ export function getCW20TokenInfo(chainName: string, contractAddress: string) {
   }) as Promise<getCW20TokenInfoResponse>;
 }
 
+export function on(eventName: 'accountChanged', handler: () => void) {
+  return window.cosmostation.cosmos.on(eventName, handler);
+}
+
+export function off(event: unknown) {
+  window.cosmostation.cosmos.off(event);
+}
+
 export function onAccountChanged(handler: () => void) {
   return window.cosmostation.cosmos.on('accountChanged', handler);
 }
