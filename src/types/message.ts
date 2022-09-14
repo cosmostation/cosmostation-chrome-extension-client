@@ -18,6 +18,7 @@ export type RequestAccountResponse = {
   address: string;
   publicKey: Uint8Array;
   name: string;
+  isLedger: boolean;
 };
 
 export type AccountResponse = RequestAccountResponse;
