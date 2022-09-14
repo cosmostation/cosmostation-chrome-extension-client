@@ -132,6 +132,38 @@ type SupportedChainNamesResponse = {
 };
 ```
 
+#### getSupportedChainIds
+
+```typescript
+import { cosmos, InstallError } from '@cosmostation/extension-client';
+
+try {
+  const provider = await cosmos();
+
+  const supportedChainIds = await provider.getSupportedChainIds();
+} catch (e) {
+  if (e instanceof InstallError) {
+    console.log('not installed');
+  }
+}
+```
+
+##### response (example)
+
+```json
+{
+  "official": ["cosmoshub-4", "gravity-bridge-3"],
+  "unofficial": ["columbus-5", "agoric-3"]
+}
+```
+
+```typescript
+type SupportedChainIdsResponse = {
+  official: string[];
+  unofficial: string[];
+};
+```
+
 #### getActivatedChains
 
 ```typescript
@@ -156,6 +188,32 @@ try {
 
 ```typescript
 export type ActivatedChainNamesResponse = string[];
+```
+
+#### getActivatedChainIds
+
+```typescript
+import { cosmos, InstallError } from '@cosmostation/extension-client';
+
+try {
+  const provider = await cosmos();
+
+  const activatedChainIds = await provider.getActivatedChainIds();
+} catch (e) {
+  if (e instanceof InstallError) {
+    console.log('not installed');
+  }
+}
+```
+
+##### response (example)
+
+```json
+["cosmoshub-4", "gravity-bridge-3"]
+```
+
+```typescript
+export type ActivatedChainIdsResponse = string[];
 ```
 
 #### getAccount
@@ -218,7 +276,8 @@ try {
 {
   "name": "accountName",
   "address": "cosmos1wgeoiheoighwoighwioeghoweghoiweghiow",
-  "publicKey": [3, 77, 9, 189, 251, 249, 150, 235, 192, 56, 51, 98, 56, 242, 12, 102, 144, 211, 89, 42, 187, 170]
+  "publicKey": [3, 77, 9, 189, 251, 249, 150, 235, 192, 56, 51, 98, 56, 242, 12, 102, 144, 211, 89, 42, 187, 170],
+  "isLedger": false
 }
 ```
 
@@ -227,6 +286,7 @@ type RequestAccountResponse = {
   name: string;
   address: string;
   publicKey: Uint8Array;
+  isLedger: boolean;
 };
 ```
 

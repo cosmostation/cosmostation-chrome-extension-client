@@ -1,5 +1,6 @@
 import type {
   AccountResponse,
+  ActivatedChainIdsResponse,
   ActivatedChainNamesResponse,
   AddChainParams,
   AddCW20TokenResponse,
@@ -17,6 +18,7 @@ import type {
   SignDirectDoc,
   SignDirectResponse,
   SignOptions,
+  SupportedChainIdsResponse,
   SupportedChainNamesResponse,
 } from './types/message';
 
@@ -26,6 +28,14 @@ export function getSupportedChains() {
 
 export function getActivatedChains() {
   return window.cosmostation.cosmos.request({ method: 'cos_activatedChainNames' }) as Promise<ActivatedChainNamesResponse>;
+}
+
+export function getSupportedChainIds() {
+  return window.cosmostation.cosmos.request({ method: 'cos_supportedChainIds' }) as Promise<SupportedChainIdsResponse>;
+}
+
+export function getActivatedChainIds() {
+  return window.cosmostation.cosmos.request({ method: 'cos_activatedChainIds' }) as Promise<ActivatedChainIdsResponse>;
 }
 
 export function getAccount(chainName: string) {

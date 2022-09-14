@@ -8,7 +8,11 @@ export type SupportedChainNamesResponse = {
   unofficial: string[];
 };
 
+export type SupportedChainIdsResponse = SupportedChainNamesResponse;
+
 export type ActivatedChainNamesResponse = string[];
+
+export type ActivatedChainIdsResponse = ActivatedChainNamesResponse;
 
 export type RequestAccountResponse = {
   address: string;
