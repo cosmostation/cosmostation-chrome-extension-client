@@ -1,6 +1,7 @@
 {
   "name": "@cosmostation/extension-client",
   "version": "0.1.9",
+  "type": "module",
   "description": "chrome extension cosmostation client",
   "scripts": {
     "tsc": "tsc",
