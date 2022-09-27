@@ -1,0 +1,16 @@
+{
+  "root": true,
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "./eslint/react.ts",
+    "./eslint/typescript.ts",
+    "./eslint/import.ts",
+    "./eslint/prettier.ts"
+  ],
+  "rules": {
+    "@typescript-eslint/camelcase": "off",
+    "camelcase": "off"
+  }
+}

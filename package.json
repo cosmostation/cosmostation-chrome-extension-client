@@ -1,10 +1,9 @@
 {
   "name": "@cosmostation/extension-client",
   "version": "0.1.10",
-  "type": "module",
   "description": "chrome extension cosmostation client",
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "patch": "yarn version --patch --no-git-tag-version",
     "postpatch": "yarn run build",
     "minor": "yarn version --minor --no-git-tag-version",
@@ -14,13 +13,20 @@
     "patch:prerelease": "yarn version --prerelease --preid alpha --no-git-tag-version",
     "postpatch:prerelease": "yarn run build",
     "prebuild": "rimraf dist",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "postbuild": "cpy package.json dist && cpy README.md dist",
     "publish:latest": "cd dist && yarn publish --access public",
     "publish:alpha": "cd dist && yarn publish --tag alpha --access public"
   },
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "files": [
+    "dist/"
+  ],
+  "engines": {
+    "node": "^14.3.1 || >= 16.0.0"
+  },
+  "types": "./dist/esm/index.d.ts",
   "author": "ong-ar",
   "email": "reclusis@gmail.com",
   "license": "MIT",

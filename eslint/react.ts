@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   extends: ['airbnb', 'airbnb/hooks'],
   plugins: ['react'],
   parserOptions: {

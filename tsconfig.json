@@ -5,7 +5,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "sourceMap": false,
     "declaration": true,
-    "outDir": "dist",
+    "outDir": "./dist/esm",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
