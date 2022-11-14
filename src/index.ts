@@ -1,3 +1,4 @@
+import * as aptosFunctions from './aptos';
 import * as cosmosFunctions from './cosmos';
 import { InstallError } from './error';
 import * as tendermintFunctions from './tendermint';
@@ -9,6 +10,7 @@ export function isInstalled() {
 }
 
 export type Cosmos = typeof cosmosFunctions;
+export type Aptos = typeof aptosFunctions;
 
 export function cosmos(): Promise<Cosmos> {
   return new Promise((resolve, reject) => {
@@ -26,15 +28,12 @@ export function cosmos(): Promise<Cosmos> {
   });
 }
 
-// legacy
-export type Tendermint = typeof tendermintFunctions;
-
-export function tendermint(): Promise<Tendermint> {
+export function aptos(): Promise<Aptos> {
   return new Promise((resolve, reject) => {
     const interval = setInterval(() => {
       if (isInstalled()) {
         clearInterval(interval);
-        resolve(tendermintFunctions);
+        resolve(aptosFunctions);
       }
     }, 100);
 
@@ -56,6 +55,25 @@ export function ethereum(): Promise<{
       if (isInstalled()) {
         clearInterval(interval);
         resolve(window.cosmostation.ethereum);
+      }
+    }, 100);
+
+    setTimeout(() => {
+      clearInterval(interval);
+      reject(new InstallError());
+    }, 500);
+  });
+}
+
+// legacy
+export type Tendermint = typeof tendermintFunctions;
+
+export function tendermint(): Promise<Tendermint> {
+  return new Promise((resolve, reject) => {
+    const interval = setInterval(() => {
+      if (isInstalled()) {
+        clearInterval(interval);
+        resolve(tendermintFunctions);
       }
     }, 100);
 

@@ -14,6 +14,8 @@ export type ActivatedChainNamesResponse = string[];
 
 export type ActivatedChainIdsResponse = ActivatedChainNamesResponse;
 
+export type AptosIsConnectedResponse = boolean;
+
 export type RequestAccountResponse = {
   address: string;
   publicKey: Uint8Array;
@@ -132,4 +134,62 @@ export type getCW20TokenInfoResponse = {
   name: string;
   symbol: string;
   total_supply: string;
+};
+
+// -- Aptos --
+
+export type AptosConnectResponse = {
+  address: string;
+  publicKey: string;
+};
+
+export type AptosAccountResponse = AptosConnectResponse;
+
+export type AptosDisconnectResponse = null;
+
+export type AptosNetworkResponse = string;
+
+export type AptosSignPayload<T = unknown> = {
+  function: string;
+  type: string;
+  type_arguments: string[];
+  arguments: T[];
+};
+
+export type AptosSignTransactionResponse = string;
+
+export type AptosPendingTransaction = {
+  hash: string;
+  sender: string;
+  sequence_number: string;
+  max_gas_amount: string;
+  gas_unit_price: string;
+  expiration_timestamp_secs: string;
+  payload: AptosSignPayload;
+  signature?: {
+    type: string;
+    public_key: string;
+    signature: string;
+  };
+};
+
+export type AptosSignAndSubmitTransactionResponse = AptosPendingTransaction;
+
+export type AptosSignMessageParams = {
+  address?: boolean;
+  application?: boolean;
+  chainId?: boolean;
+  message: string;
+  nonce: number;
+};
+
+export type AptosSignMessageResponse = {
+  address: string;
+  application: string;
+  chainId: number;
+  message: string;
+  nonce: number;
+  fullMessage: string;
+  prefix: string;
+  signature: string;
 };
