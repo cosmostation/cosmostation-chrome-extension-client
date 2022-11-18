@@ -17,9 +17,11 @@ import type {
   SignAminoResponse,
   SignDirectDoc,
   SignDirectResponse,
+  SignMessageResponse,
   SignOptions,
   SupportedChainIdsResponse,
   SupportedChainNamesResponse,
+  VerifyMessageResponse,
 } from './types/message';
 
 export function getSupportedChains() {
@@ -62,6 +64,20 @@ export function signDirect(chainName: string, doc: SignDirectDoc, options?: Sign
     method: 'cos_signDirect',
     params: { chainName, doc, isEditMemo: !!options?.memo, isEditFee: !!options?.fee, gasRate: options?.gasRate },
   }) as Promise<SignDirectResponse>;
+}
+
+export function signMessage(chainName: string, signer: string, message: string) {
+  return window.cosmostation.cosmos.request({
+    method: 'cos_signMessage',
+    params: { chainName, signer, message },
+  }) as Promise<SignMessageResponse>;
+}
+
+export function verifyMessage(chainName: string, signer: string, message: string, signMessageResponse: SignMessageResponse) {
+  return window.cosmostation.cosmos.request({
+    method: 'cos_verifyMessage',
+    params: { chainName, signer, message, publicKey: signMessageResponse.pub_key.value, signature: signMessageResponse.signature },
+  }) as Promise<VerifyMessageResponse>;
 }
 
 export function sendTransaction(chainName: string, txBytes: Uint8Array | string, mode: SendTransactionMode) {

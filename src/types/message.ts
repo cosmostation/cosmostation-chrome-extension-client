@@ -14,7 +14,12 @@ export type ActivatedChainNamesResponse = string[];
 
 export type ActivatedChainIdsResponse = ActivatedChainNamesResponse;
 
-export type AptosIsConnectedResponse = boolean;
+export type SignMessageResponse = {
+  signature: string;
+  pub_key: { type: string; value: string };
+};
+
+export type VerifyMessageResponse = boolean;
 
 export type RequestAccountResponse = {
   address: string;
@@ -137,6 +142,8 @@ export type getCW20TokenInfoResponse = {
 };
 
 // -- Aptos --
+
+export type AptosIsConnectedResponse = boolean;
 
 export type AptosConnectResponse = {
   address: string;
