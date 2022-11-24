@@ -6,6 +6,7 @@ import type {
   AddCW20TokenResponse,
   CW20Token,
   DeleteAutoSignResponse,
+  DisconnectResponse,
   GetAutoSignResponse,
   getCW20TokenBalanceResponse,
   getCW20TokenInfoResponse,
@@ -140,6 +141,12 @@ export function onAccountChanged(handler: () => void) {
 
 export function offAccountChanged(event: unknown) {
   window.cosmostation.cosmos.off(event);
+}
+
+export function disconnect() {
+  return window.cosmostation.cosmos.request({
+    method: 'cos_disconnect',
+  }) as Promise<DisconnectResponse>;
 }
 
 export const SEND_TRANSACTION_MODE = {
