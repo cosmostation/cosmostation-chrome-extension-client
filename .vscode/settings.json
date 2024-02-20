@@ -56,5 +56,8 @@
     "**/dist": true
   },
   "explorer.sortOrder": "filesFirst",
-  "explorer.sortOrderLexicographicOptions": "lower"
+  "explorer.sortOrderLexicographicOptions": "lower",
+  "githubPullRequests.ignoredPullRequestBranches": [
+    "main"
+  ]
 }
